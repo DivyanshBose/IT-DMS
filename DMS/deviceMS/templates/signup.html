@@ -1,0 +1,248 @@
+{% load static %}
+
+<script>
+    function checkPassword() {
+        if (document.signup.password.value !== document.signup.confirmpassword.value) {
+            alert('Password and Confirm Password do not match');
+            document.signup.confirmpassword.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Signup Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style media="screen">
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('{% static "images/background.jpeg" %}');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+        }
+        form {
+            height: 600px;
+            width: 450px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+        }
+        form * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        input {
+            display: block;
+            height: 40px;
+            width: 100%;
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 2px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        ::placeholder {
+            color: #e5e5e5;
+        }
+        button.button-signup {
+            margin-top: 20px;
+            width: 45%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            float: left;
+            margin-right: 5px;
+        }
+        a.button-login {
+            margin-top: 20px;
+            width: 45%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-left: 5px;
+        }
+        .social {
+            margin-top: 30px;
+            display: flex;
+        }
+        .social div {
+            background: red;
+            width: 150px;
+            border-radius: 3px;
+            padding: 5px 10px 10px 5px;
+            background-color: rgba(255,255,255,0.27);
+            color: #eaf0fb;
+            text-align: center;
+        }
+        .social div:hover {
+            background-color: rgba(255,255,255,0.47);
+        }
+        .social .fb {
+            margin-left: 25px;
+        }
+        .social i {
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm p-0">
+            <div class="container-fluid p-2">
+                  <h1 class="text-center p-3 font-weight-bold" style="color: #e5e5e5; border-bottom : 2px solid green; border-top : 2px solid green">IT DEVICE MANAGEMENT SYSTEM</h1>
+                </div>
+                <div class="card shadow" style="min-height: 90vh">
+                  <div class="card-body bg-info">
+                    <form method="post" name="signup" onsubmit="return checkPassword()">
+                        {% csrf_token %} 
+                        <h3>User Signup</h3>
+
+                        <label>Username</label>
+                        <input type="text" placeholder="Username" name="username">
+
+                        <label>Email</label>
+                        <input type="email" placeholder="Email" name="email">
+
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" name="password">
+
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm Password" name="confirmpassword">
+
+                        <br>
+                        <button class="button-signup" type="submit">Signup</button>
+                        <a class="button-login" href="{% url 'emp_login' %}">Login</a>
+                    </form>
+                </div>
+            </div>
+  
+          </div>
+      </div>
+  </div>
+
+    <script>
+    
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmpassword');
+    
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+    
+        function validatePassword() {
+            const passwordValue = passwordInput.value;
+            const capitalLetterRegex = /[A-Z]/;
+            const digitRegex = /[0-9]/;
+            const specialCharacterRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?-]/;
+    
+            let capitalLetterCount = 0;
+            let digitCount = 0;
+            let specialCharacterCount = 0;
+    
+            for (let i = 0; i < passwordValue.length; i++) {
+                const char = passwordValue[i];
+    
+                if (capitalLetterRegex.test(char)) {
+                    capitalLetterCount++;
+                } else if (digitRegex.test(char)) {
+                    digitCount++;
+                } else if (specialCharacterRegex.test(char)) {
+                    specialCharacterCount++;
+                }
+            }
+    
+            if (passwordValue.length < 8) {
+                passwordInput.setCustomValidity('Password must be at least 8 characters long');
+            } else if (capitalLetterCount !== 1) {
+                passwordInput.setCustomValidity('Password must contain one uppercase letter');
+            } else if (digitCount < 1) {
+                passwordInput.setCustomValidity('Password must contain at least one digit');
+            } else if (specialCharacterCount !== 1) {
+                passwordInput.setCustomValidity('Password can contain at most one special character');
+            } else {
+                passwordInput.setCustomValidity('');
+            }
+    
+            validateConfirmPassword();
+        }
+    
+        function validateConfirmPassword() {
+            const passwordValue = passwordInput.value;
+            const confirmPasswordValue = confirmPasswordInput.value;
+    
+            if (passwordValue === confirmPasswordValue) {
+                confirmPasswordInput.setCustomValidity('');
+            } else {
+                confirmPasswordInput.setCustomValidity('Passwords do not match.');
+            }
+        }
+    
+        function checkPassword() {
+    
+            validatePassword();
+            validateConfirmPassword();
+        }
+        
+    </script>
+</body>
+</html>

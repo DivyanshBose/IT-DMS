@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="card shadow m-3">
+    <div class="card-body">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">VIEW DESKTOP DETAILS</h5> 
+                <a href="/viewDeviceUser/" class="btn btn-primary">Back</a>                     
+            </div>            
+            <!-- Table for Desktop -->
+            <table id = "example"class="table table-bordered">
+                <!-- Table headers and rows for the Desktop device data -->
+                <thead class = "text-black bg-info">
+                    <tr>
+                        <th>Serial Number</th>
+                        <th>Monitor Brand Name</th>
+                        <th>Monitor Model Name</th>
+                        <th>CPU Brand Name</th>
+                        <th>CPU Model Name</th>
+                        <th>CPU Processor</th>
+                        <th>CPU RAM</th>
+                        <th>Keyboard Serial Number</th>
+                        <th>Mouse Serial Number</th>
+                        <th>Grant</th>
+                        <th>Year of Purchase</th>
+                        <th>Group</th>
+                        <th>Nomenclature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in desktop %}
+                    <tr>
+                        <td>{{i.voucher_numberd}}</td>
+                        <td>{{i.monitor_brand_name}}</td>
+                        <td>{{i.monitor_model_name}}</td>
+                        <td>{{i.cpu_brand_name}}</td>
+                        <td>{{i.cpu_model_name}}</td>
+                        <td>{{i.cpu_processor}}</td>
+                        <td>{{i.cpu_ram}}</td>
+                        <td>{{i.mouse_serial_number}}</td>
+                        <td>{{i.keyboard_serial_number}}</td>
+                        <td>{{i.grant}}</td>
+                        <td>{{i.year_of_purchase}}</td>
+                        <td>{{i.group}}</td>
+                        <td>{{i.nomenclature}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endblock %}
+    
+    {% block style %}
+    <style>
+        /* Custom styling for tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    /* Add any other table styles you want */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    /* Add any other styles for table header cells (th) and table data cells (td) */
+  }
+
+
+
+</style>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <p class="logo"><span>IT</span>-DMS</p>
+    <a href="{% url 'home' %}" class="icon-a"><i class="fa fa-dashboard icons"></i>&nbsp;&nbsp; Dashboard</a>
+    <a href="{% url 'viewDeviceUser' %}" class="icon-a"><i class="fa fa-eye icons"></i>&nbsp;&nbsp; View Device</a>
+    <a href="{% url 'searchDeviceUser' %}" class="icon-a"><i class="fa fa-search icons"></i>&nbsp;&nbsp; Search Device</a>
+    <a href="{% url 'logout' %}" class="icon-a"><i class="fa fa-sign-out icons"></i>&nbsp;&nbsp; Logout</a>
+</div>
+
+<div id="main">
+    <div class="head">
+        <div class="col-div-6">
+            <span style="font-size: 30px; cursor:pointer; color: white;" class="nav">&#9776; User Dashboard</span>
+            <span style="font-size: 30px; cursor:pointer; color: white;" class="nav2">&#9776; User Dashboard</span>
+        </div>
+        <div class="col-div-6">
+            <div class="profile">
+                <img src="{% static 'images/user.png' %}" class="pro-img" >
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="col-div-3">
+        <div class="box">
+            <p>{{desktop_count}}<br><span>Desktop</span></p>
+            <i class="fa fa-desktop box-icon"></i>
+        </div>
+    </div>
+
+    <div class="col-div-3">
+        <div class="box">
+            <p>{{printer_count}}<br><span>Printer</span></p>
+            <i class="fa fa-print box-icon"></i>
+        </div>
+    </div>
+
+    <div class="col-div-3">
+        <div class="box">
+            <p>{{ups_count}}<br><span>UPS</span></p>
+            <i class="fa fa-database box-icon"></i>
+        </div>
+    </div>
+
+    <div class="col-div-3">
+        <div class="box">
+            <p>{{mfd_count}}<br><span>Multifunctional Device</span></p>
+            <i class="fa fa-photo box-icon"></i>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <br/><br/>
+    
+
+    <div class="col-div-4">
+      <div class="box-4">
+        <div class="content-box">
+          <p>Total Servicable Devices</p>
+          <div class="circle-wrap">
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+              <div class="mask half">
+                <div class="fill"></div>
+              </div>
+              <div class="inside-circle">70%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-div-4">
+      <div class="box-4">
+        <div class="content-box">
+          <p>Products on Total Grant</p>
+          <div class="circle-wrap">
+            <div class="circle">
+              <div class="mask full">
+                <div class="fill"></div>
+              </div>
+
+              <div class="mask half">
+                <div class="fill"></div>
+              </div>
+
+              <div class="inside-circle">50%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="clearfix"></div>
+    <br/><br/>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(".nav").click(function(){
+     $("#mySidenav").css('width', '70px');
+    $("#main").css('margin-left', '70px');
+    $(".logo").css('visibility', 'hidden');
+    $(".logo span").css('visibility', 'visible');
+    $(".logo span").css('margin-left', '-10px');
+    $(".icon-a").css('visibility', 'hidden');
+    $(".icons").css('visibility', 'visible');
+    $(".icons").css('margin-left', '5px');
+    $(".nav").css('display', 'none');
+    $(".nav2").css('display', 'block');
+  });
+
+  $(".nav2").click(function(){
+     $("#mySidenav").css('width', '300px');
+    $("#main").css('margin-left', '300px');
+    $(".logo").css('visibility', 'visible');
+    $(".logo span").css('visibility', 'visible');
+    $(".icon-a").css('visibility', 'visible');
+    $(".icons").css('visibility', 'visible');
+    $(".nav").css('display', 'block');
+    $(".nav2").css('display', 'none');
+  });
+</script>
+
+</body>
+</html>

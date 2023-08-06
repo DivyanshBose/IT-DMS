@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card shadow m-3">
+    <div class="card-body">
+        <h5 class="p-2 text-danger text-center" style="border-bottom: 2px solid orange">DEVICE DETAILS</h5>
+
+        <a href="{% url 'searchDeviceUser' %}" class="btn btn-outline-success mb-3">Search Back</a>
+
+
+        {% if desktop %}
+        <h5 class="text-center">Desktop Details</h5>
+
+        <!--Desktop table-->
+        <table id="desktopdetailTable" class="table table-bordered device-table">
+            <!-- Table headers and rows for the Desktop device data -->
+            <thead class="text-black bg-info">
+                <tr>
+                    <th>Serial Number</th>
+                    <th>Grant</th>
+                    <th>Year of Purchase</th>
+                    <th>Group</th>
+                    <th>Nomenclature</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in desktop %}
+                <tr>
+                    <!-- variables to define column of a table in models-->
+                    <td>{{ device.voucher_numberd }}</td>     
+                    <td>{{ device.grant }}</td>
+                    <td>{{ device.year_of_purchase }}</td>
+                    <td>{{ device.group }}</td>
+                    <td>{{ device.nomenclature }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            </table>
+
+            {% else %}
+            <p class="text-center">No data found for Desktop</p>
+            {% endif %}
+    
+            <hr>
+            {% if printer_queryset %}
+            <h5 class="text-center">Printer Details</h5>
+    
+            <!--Printer Details-->
+            <table id="printerdetailTable" class="table table-bordered device-table">
+              <!-- Table headers and rows for the Printer device data -->
+              <thead class = "text-black bg-info">
+                  <tr>
+                      <th>Voucher Number</th>
+                      <th>Model Name</th>
+                      <th>Grant</th>
+                      <th>Year of Purchase</th>
+                      <th>Printer Type</th>
+                      <th>Group</th>
+                      <th>Nomenclature</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for j in printer_queryset %}
+                  <tr>
+                      <td>{{j.voucher_numberp}}</td>
+                      <td>{{j.model_name}}</td>
+                      <td>{{j.grant}}</td>
+                      <td>{{j.pyop}}</td>
+                      <td>{{j.ptype}}</td>
+                      <td>{{j.group}}</td>
+                      <td>{{j.nomenclature}}</td>
+                     
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          
+          </table>
+
+          {% else %}
+          <p class="text-center">No matching data found for Printer</p>
+          {% endif %}
+  
+          <hr>
+          {% if ups_queryset %}
+          <h5 class="text-center">UPS Details</h5>
+
+           <!-- Table for UPS -->
+           <table id="upsdetailTable" class="table table-bordered device-table">
+            <!-- Table headers and rows for the UPS device data -->
+            <thead class = "text-black bg-info">
+                <tr>
+                    <th>Voucher Number</th>
+                    <th>Model Name</th>
+                    <th>Grant</th>
+                    <th>Year of Purchase</th>
+                    <th>UPS Power</th>
+                    <th>UPS Type</th>
+                    <th>Group</th>
+                    <th>Nomenclature</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for k in ups_queryset %}
+                <tr>
+                    <td>{{k.voucher_numberu}}</td>
+                    <td>{{k.model_name}}</td>
+                    <td>{{k.grant}}</td>
+                    <td>{{k.uyop}}</td>
+                    <td>{{k.ups_power}}</td>
+                    <td>{{k.ups_type}}</td>
+                    <td>{{k.group}}</td>
+                    <td>{{k.nomenclature}}</td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+
+        {% else %}
+        <p class="text-center">No matching data found for UPS</p>
+        {% endif %}
+
+        <hr>
+        {% if mfd_queryset %}
+        <h5 class="text-center">Multifunctional Device Details</h5>
+
+        <!-- Table for Multifunctional Device -->
+        
+        <table id="multifunctionaldevicedetailTable" class="table table-bordered device-table">
+          <!-- Table headers and rows for the Multifunctional Device data -->
+          <thead class = "text-black bg-info">
+              <tr>
+                  <th>Voucher Number</th>
+                  <th>Model Name</th>
+                  <th>Grant</th>
+                  <th>Year of Purchase</th>
+                  <th>Group</th>
+                  <th>Nomenclature</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              {% for a in mfd_queryset %}
+              <tr>
+                  <td>{{a.voucher_numberm}}</td>
+                  <td>{{a.model_name}}</td>
+                  <td>{{a.grant}}</td>
+                  <td>{{a.purchaseyear}}</td>
+                  <td>{{a.group}}</td>
+                  <td>{{a.nomenclature}}</td>
+                 
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+      {% else %}
+      <p class="text-center">No matching data found for Multifunctional Device</p>
+      {% endif %}
+
+      </div>
+    </div>
+         
+{% endblock %}
+
+{% block style %}
+<style>
+  /* Custom styling for tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    /* Add any other table styles you want */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    /* Add any other styles for table header cells (th) and table data cells (td) */
+  }
+</style>
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="card shadow m-3">
+    <div class="card-body">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">VIEW UPS DETAILS</h5> 
+            <a href="/viewDevice/" class="btn btn-primary">Back</a>                     
+        </div>
+        <table id="example" class="table table-bordered">
+            <!-- Table headers and rows for the UPS device data -->
+            <thead class = "text-black bg-info">
+                <tr>
+                    <th>Serial Number</th>
+                    <th>Brand Name</th>
+                    <th>Model Name</th>
+                    <th>Grant</th>
+                    <th>Year of Purchase</th>
+                    <th>UPS Power</th>  
+                    <th>UPS Type</th>
+                    <th>Group</th>
+                    <th>Nomenclature</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k in ups %}
+                <tr>
+                    <td>{{k.voucher_numberu}}</td>
+                    <td>{{k.brand_name}}</td>
+                    <td>{{k.model_name}}</td>
+                    <td>{{k.grant}}</td>
+                    <td>{{k.uyop}}</td>
+                    <td>{{k.ups_power}}</td>
+                    <td>{{k.ups_type}}</td>
+                    <td>{{k.group}}</td>
+                    <td>{{k.nomenclature}}</td>
+                    <td>
+                        <a href="/editUPS/{{k.voucher_numberu}}" class="btn btn-success md-sm">Edit</a>
+                    </td>
+                    <td>
+                        <a href="/deleteUPS/{{k.voucher_numberu}}" class="btn btn-danger md-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+
+    </div>
+</div>
+{% endblock %}
+    
+    {% block style %}
+    <style>
+        /* Custom styling for tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    /* Add any other table styles you want */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    /* Add any other styles for table header cells (th) and table data cells (td) */
+  }
+
+
+
+</style>
+
+{% endblock %}

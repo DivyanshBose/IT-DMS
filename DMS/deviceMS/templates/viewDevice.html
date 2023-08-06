@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="card shadow m-3">
+    <div class="card-body">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">VIEW DEVICE DETAILS</h5> 
+            <a href="/admin_dashboard/" class="btn btn-primary">Dashboard</a>          
+        </div>
+
+        <div class="container-fluid" style="background-color:rgba(4, 246, 201, 0.947); padding-bottom: 1px;">
+            <div class="form-row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label><h5 style="color:black"><b>Select IT Device</b></h5></label>
+                        <select id="device-dropdown" name="devicedetails" class="form-control">
+                            <option value="None">--Select--</option>
+                            <option value="desktop">Desktop</option>
+                            <option value="printer">Printer</option>
+                            <option value="ups">UPS</option>
+                            <option value="multifunctionaldevice">Multifunctional Device</option>
+                        </select>    
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Table for Desktop -->
+            
+    </div>
+</div>
+{% endblock %}
+
+{% block style %}
+<style>
+  /* Custom styling for tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    /* Add any other table styles you want */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    /* Add any other styles for table header cells (th) and table data cells (td) */
+  }
+
+  /* Custom class to hide elements */
+  .hide {
+    display: none;
+  }
+
+  /* Custom class for non-desktop device tables */
+  .device-table {
+    display: none;
+  }
+
+
+</style>
+
+{% endblock %}
+
+
+{% block script %}
+<script>
+  function showDetailsForm() {
+      var selectedDevice = document.getElementById('device-dropdown').value;
+
+      // Redirect to the appropriate page based on the selected device
+      switch (selectedDevice) {
+          case "desktop":
+              window.location.href = "/viewDesktop";
+              break;
+          case "printer":
+              window.location.href = "/viewPrinter";
+              break;
+          case "ups":
+              window.location.href = "/viewUPS";
+              break;
+          case "multifunctionaldevice":
+              window.location.href = "/viewMFD";
+              break;
+          default:
+              // Do nothing or show an error message
+              break;
+      }
+  }
+
+  // Call the function when the device dropdown value changes
+  document.getElementById('device-dropdown').addEventListener('change', showDetailsForm);
+
+  // Hide all device tables on page load
+  window.onload = function() {
+      showDetailsForm();
+  };
+</script>
+{% endblock %}

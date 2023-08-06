@@ -1,0 +1,685 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="card shadow m-3">
+    <div class="card-body">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">Add Device</h5>
+        <a href="/admin_dashboard/" class="btn btn-primary">Dashboard</a>
+
+      </div>
+
+        <div class="container-fluid" style="background-color: rgba(4, 246, 201, 0.947); padding-bottom: 1px;">
+            <form id="details-form" method="post" action="{% url 'addDevice' %}" name="component_submit" onsubmit="submitForm(event)">
+                {% csrf_token %}
+                  <div class="container-fluid">
+                    <div class="form-row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <br>
+                          <label><h5><b>Select IT Device</h5></b></label>
+                          <select id="device-dropdown" name="devices" class="form-control" onchange="showDetailsForm()">
+                              <option value="None">--Select--</option>
+                              <option value="Desktop">Desktop</option>
+                              <option value="Printer">Printer</option>
+                              <option value="UPS">UPS</option>
+                              <option value="Multi Functional Device">Multi Functional Device</option>
+                          </select>    
+                        </div>
+                      </div>
+                    </div>
+
+                  <!-- Device tables -->
+                  <div class="device-table hide" id="DesktopTable">
+                    <h2>Desktop</h2>    
+                      <form method="post">
+                        {% csrf_token %}
+                          <div class="form-row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Serial Number</label>
+                                    <input type="text" class="form-control" name="SerialNumberD" placeholder="Enter Serial Number">
+                                </div>
+                            </div>
+                          
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Monitor Brand Name</label>
+                                    <select class="form-control" id="monitorbrandName" name="MonitorBrandNameD">
+                                        <option value="None">--Select--</option>
+                                        <option value="ACER">ACER</option>
+                                        <option value="AON">AON</option>
+                                        <option value="HP">HP</option>
+                                        <option value="DELL">DELL</option>
+                                        <option value="SAMSUNG">SAMSUNG</option>
+                                        <option value="LOGITECH">LOGITECH</option>
+                                        <option value="LG">LG</option>
+                                        <option value="LENOVO">LENOVO</option>
+                                    </select>
+                                  </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                    <label>Monitor Model Name</label>
+                                    <select class="form-control" id="monitormodelName" name="MonitorModelNameD">
+                                        <option value="None">--Select--</option>
+                                        <option value="ACER-VERITON M 2640G">ACER-VERITON M 2640G</option>
+                                        <option value="ACER DESKTOP BID/112002">ACER DESKTOP BID/112002</option>
+                                        <option value="HP DESKTOP">HP DESKTOP</option>
+                                        <option value="DELL DESKTOP - 1400FP">DELL DESKTOP - 1400FP</option>
+                                        <option value="DELL DESKTOP - 1401FP">DELL DESKTOP - 1401FP</option>
+                                        <option value="DELL DESKTOP - 1500FP">DELL DESKTOP - 1500FP</option>
+                                        <option value="LENOVO DESKTOP">LENOVO DESKTOP</option>
+                                        <option value="AOC - E970SWHEN">AOC - E970SWHEN</option>
+                                        <option value="Acer EK220Q 21.5">Acer EK220Q 21.5</option>
+                                        <option value="Acer P205H LCD Monitor">Acer P205H LCD Monitor</option>
+                                        <option value="HP Compaq LA1905wg">HP Compaq LA1905wg</option>
+                                        <option value="HP LA2205wg">HP LA2205wg</option>
+                                        <option value="HP LA22f">HP LA22f</option>
+                                        <option value="HP LA2405wg">HP LA2405wg</option>
+                                        <option value="SAMSUNG 27-inch S39C">SAMSUNG 27-inch S39C </option>
+                                        <option value="SAMSUNG 24-inch S60UA ">SAMSUNG 24-inch S60UA </option>
+                                        <option value="SAMSUNG 27″ Viewfinity S80">SAMSUNG 27″ Viewfinity S80</option>
+                                        <option value="k120 LOGITECH">k120 LOGITECH</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>CPU Brand Name</label>
+                                  <select class="form-control" id="cpubrandName" name="CpuBrandNameD">
+                                      <option value="None">--Select--</option>
+                                      <option value="INTEL CORE">INTEL CORE</option>
+                                      <option value="LENOVO">LENOVO</option>
+                                      <option value="HP">HP</option>
+                                      <option value="DELL">DELL</option>
+                                      <option VLAUE="CELERON">CELERON</option>
+                                      <option value="AMD">AMD</option>
+                                      <option value="INTEL ATOM">INTEL ATOM</option>
+
+                                  </select>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>CPU Model Name</label>
+                                  <select class="form-control" id="cpumodelName" name="CpuModelNameD">
+                                      <option value="None">--Select--</option>
+                                      <option value="I5 HP 5800 C2D">I5 HP 5800 C2D</option>
+                                      <option value="I3 HP C2D">I3 HP C2D</option>
+                                      <option value="ThinkVision M93 CPU I3">ThinkVision M93 CPU I3</option>
+                                      <option value="Intel Core I5-13700K">Intel Core i5-13700K</option>
+                                      <option value="I5 HP C2D">I5 HP C2D</option>
+                                    </select>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>CPU Processor</label>
+                                    <select class="form-control" id="proc" name="CpuProcessorD">
+                                      <option value="None">--Select--</option>
+                                      <option value="I3">I3</option>
+                                        <option value="I5">I5</option>
+                                        <option value="PENTIUM - II">PENTIUM - II</option>
+                                        <option value="PENTIUM - III">PENTIUM - III</option>
+                                        <option value="PENTIUM - IV">PENTIUM - IV</option>
+                                        <option value="INTEL CORE 2 Duo">INTEL CORE 2 Duo</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>RAM</label>
+                                    <select class="form-control" id="cpustorage" name="CpuRamD">
+                                      <option value="None">--Select--</option>
+                                      <option value="2 GB RAM">2 GB RAM</option>
+                                      <option value="4 GB RAM">4 GB RAM</option>
+                                      <option value="8 GB RAM">8 GB RAM</option>
+                                    </select>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Mouse Serial Number</label>
+                                    <input type="text" class="form-control" name="MouseSerialNumberD" placeholder="Enter Mouse Serial Number">
+                                </div>
+                              </div>
+  
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Keyboard Serial Number</label>
+                                    <input type="text" class="form-control" name="KeyboardSerialNumberD" placeholder="Enter Mouse Serial Number">
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label">Grant</label>
+                                    <select class="form-control" id="grant-d" name="GrantD">
+                                      <option value="None">--Select--</option>
+                                        <option value="IT-HW">IT-HW</option>
+                                        <option value="DGEME CASH">DGEME CASH</option>
+                                        <option value="IT-DGEME">IT-DGEME</option>
+                                        <option value="PMSE">PMSE</option>
+                                        <option value="MISCELLANEOUS">MISCELLANEOUS</option>
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                    <label>Year of Purchace</label>
+                                    <select class="form-control" id="YOP-d" name="YopD">
+                                        <option value="None">--Select--</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                            </div>
+                          
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Group</label>
+                                    <select class="form-control" id="gp-d" name="GroupD">
+                                      <option value="None">--Select--</option>
+                                      <option value="TL">TL</option>
+                                      <option value="FCRC">FCRC</option>
+                                      <option value="HQ">HQ</option>
+                                      <option value="SCSO">SCSO</option>
+                                      <option value="FINANCE">FINANCE</option>
+                                      <option value="MCO">MCO</option>
+                                      <option value="GMP OFFICE">GMP OFFICE</option>
+                                      <option value="CRC">CRC</option>
+                                      <option value="PROJECT CELL">PROJECT CELL</option>
+                                      <option value="WSG">WSG</option>
+                                      <option value="MI ROOM">MI ROOM</option>
+                                      <option value="LEGAL CELL">LEGAL CELL</option>
+                                      <option value="CO ORD LIB">CO ORD LIB</option>
+                                      <option value="COMDTT SECTION">COMDTT SECTION</option>
+                                      <option value="NM">NM</option>
+                                      <option value="OSS">OSS</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <label>Nomenclature</label>
+                                <input type="text" class="form-control" placeholder="Enter Nomenclature" name="NomenclatureD">
+                              </div>
+                            </div>
+                          </div>
+                      </form>  
+                  </div>
+                
+                  <!-- Printer table -->
+                  <div class="device-table hide" id="PrinterTable">
+                    <h2>Printer</h2>
+                        <div class="form-row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Serial Number</label>
+                                    <input type="text" class="form-control" name="SerialNumberP" placeholder="Enter Serial Number">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Brand Name</label>
+                                    <select class="form-control" id="brandname-p" name="BrandNameP">
+                                        <option value="None">--Select--</option>
+                                        <option value="EPSON">EPSON</option>
+                                        <option value="HP">HP</option>
+                                        <option value="CANON">CANON</option>
+                                        <option value="ZEBRA TECHNOLOGY">ZEBRA TECHNOLOGY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Model Name</label>
+                                    <select class="form-control" id="modelname-p" name="ModelNameP">
+                                        <option value="None">--Select--</option>
+                                        <option value="DOT MATRIX PRINTER TVS-355">DOT MATRIX PRINTER TVS-355</option>
+                                        <option value="HP LASER JET 1160 PRINTER">HP LASER JET 1160 PRINTER</option>
+                                        <option value="PRINTER-HP LJ 1022">PRINTER-HP LJ 1022</option>
+                                        <option value="XEROX-B1022">XEROX-B1022</option>
+                                        <option value="M-105">M-105</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Grant</label>
+                                    <select class="form-control" id="grant-p" name="GrantP">
+                                      <option value="None">--Select--</option>
+                                      <option value="IT-HW">IT-HW</option>
+                                      <option value="DGEME CASH">DGEME CASH</option>
+                                      <option value="IT-DGEME">IT-DGEME</option>
+                                      <option value="PMSE">PMSE</option>
+                                      <option value="MISCELLANEOUS">MISCELLANEOUS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Year of Purchase</label>
+                                    <select class="form-control" id="YOP-p" name="YopP">
+                                        <option value="None">--Select--</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select class="form-control" id="type-p" name="TypeP">
+                                        <option value="None">--Select--</option>
+                                        <option value="DOT MATRIX">DOT MATRIX</option>
+                                        <option value="LASER JET">LASER JET</option>
+                                        <option value="INKJET">INKJET</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Group</label>
+                                    <select class="form-control" id="gp-p" name="GroupP">
+                                      <option value="None">--Select--</option>
+                                      <option value="TL">TL</option>
+                                      <option value="FCRC">FCRC</option>
+                                      <option value="HQ">HQ</option>
+                                      <option value="SCSO">SCSO</option>
+                                      <option value="FINANCE">FINANCE</option>
+                                      <option value="MCO">MCO</option>
+                                      <option value="GMP OFFICE">GMP OFFICE</option>
+                                      <option value="CRC">CRC</option>
+                                      <option value="PROJECT CELL">PROJECT CELL</option>
+                                      <option value="WSG">WSG</option>
+                                      <option value="MI ROOM">MI ROOM</option>
+                                      <option value="LEGAL CELL">LEGAL CELL</option>
+                                      <option value="CO ORD LIB">CO ORD LIB</option>
+                                      <option value="COMDTT SECTION">COMDTT SECTION</option>
+                                      <option value="NM">NM</option>
+                                      <option value="OSS">OSS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nomenclature</label>
+                                    <input type="text" class="form-control" placeholder="Enter Nomenclature" name="NomenclatureP">
+                                </div>
+                            </div>
+                        </div>
+                  </div>      
+                
+                  <!-- UPS table -->
+                  <div class="device-table hide" id="UPSTable">
+                    <h2>UPS</h2>
+                        <div class="form-row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Serial Number</label>
+                              <input type="text" class="form-control" name="SerialNumberU" placeholder="Enter Serial Number">
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Brand Name</label>
+                              <select class="form-control" id="brandname-u" name="BrandNameU">
+                                <option value="None">--Select--</option>
+                                <option value="BPE">BPE</option>
+                                <option value="LUMINOUS">LUMINOUS</option>
+                                <option value="MICROTEK">MICROTEK</option>
+                                <option value="ZEBRONICS">ZEBRONICS</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Model Name</label>
+                              <select class="form-control" id="modelName-u" name="ModelNameU">
+                                <option value="None">--Select--</option>
+                                <option value="LUMINOUS LB600PRO">LUMINOUS LB600PRO</option>
+                                <option value="LUMINOUS LB1000">LUMINOUS LB1000</option>
+                                <option value="LUMINOUS LB1001">LUMINOUS LB1000</option>
+                                <option value="LUMINOUS LB100PRO">LUMINOUS LB1000</option>
+                                <option value="BPE BP650">BPE BP650</option>
+                                <option value="BPE BP1000">BPE BP1000</option>
+                                <option value="BPE BP1000">BPE BP1050</option>
+                                <option value="BPE BP1000">BPE BP600</option>
+                                <option value="MICROTEK 1001">MICROTEK 1001</option>
+                                <option value="MICROTEK 103">MICROTEK 103</option>
+                                <option value="MICROTEK 410">MICROTEK 410</option>
+                                <option value="ZEBRONICS 501">ZEBRONICS 501</option>
+                              </select>
+                            </div>
+                          </div>
+                          
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Grant</label>
+                              <select class="form-control" id="grant-u" name="GrantU">
+                                <option value="None">--Select--</option>
+                                <option value="IT-HW">IT-HW</option>
+                                <option value="DGEME CASH">DGEME CASH</option>
+                                <option value="IT-DGEME">IT-DGEME</option>
+                                <option value="PMSE">PMSE</option>
+                                <option value="MISCELLANEOUS">MISCELLANEOUS</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Year of Purchase</label>
+                              <select class="form-control" id="YOP-u" name="YopU">
+                                <option value="None">--Select--</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Power</label>
+                              <select class="form-control" id="pwr-u" name="PowerU">
+                                <option value="None">--Select--</option>
+                                <option value="1 KVA">1 KVA</option>
+                                <option value="1 KVA">2 KVA</option>
+                                <option value="1 KVA">3 KVA</option>
+                                <option value="500 VA">500 VA</option>
+                                <option value="1000 VA">1000 VA</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Type</label>
+                              <select class="form-control" id="typ-u" name="TypeU">
+                                <option value="None">--Select--</option>
+                                <option value="ONLINE">ONLINE</option>
+                                <option value="OFFLINE">OFFLINE</option>
+                                <option value="LINE INTERACTIVE">LINE INTERACTIVE</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Group</label>
+                              <select class="form-control" id="gp-u" name="GroupU">
+                                <option value="None">--Select--</option>
+                                <option value="TL">TL</option>
+                                <option value="FCRC">FCRC</option>
+                                <option value="HQ">HQ</option>
+                                <option value="SCSO">SCSO</option>
+                                <option value="FINANCE">FINANCE</option>
+                                <option value="MCO">MCO</option>
+                                <option value="GMP OFFICE">GMP OFFICE</option>
+                                <option value="CRC">CRC</option>
+                                <option value="PROJECT CELL">PROJECT CELL</option>
+                                <option value="WSG">WSG</option>
+                                <option value="MI ROOM">MI ROOM</option>
+                                <option value="LEGAL CELL">LEGAL CELL</option>
+                                <option value="CO ORD LIB">CO ORD LIB</option>
+                                <option value="COMDTT SECTION">COMDTT SECTION</option>
+                                <option value="NM">NM</option>
+                                <option value="OSS">OSS</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label>Nomenclature</label>
+                              <input type="text" class="form-control" placeholder="Enter Nomenclature" name="NomenclatureU">
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+              
+                  <!-- Xerox Machine table -->
+                  <div class="device-table hide" id="Multi Functional DeviceTable">
+                    <h2>Multi Functional Device</h2>
+                        <div class="form-row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Serial Number</label>
+                              <input type="text" class="form-control" name="SerialNumberM" placeholder="Enter Serial Number">
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Brand Name</label>
+                              <select class="form-control" id="brandName-x" name="BrandnameM">
+                                <option value="None">--Select--</option>
+                                <option value="EPSON XEROX MACHINE">EPSON XEROX MACHINE</option>
+                                <option value="HP">HP</option>
+                                <option value="CANON">CANON</option> 
+                                <option value="ECO TANK">ECO TANK</option> 
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Model Name</label>
+                              <select class="form-control" id="modelName-x" name="ModelnameM">
+                                <option value="None">--Select--</option>
+                                <option value="CANON IR 2006N">CANON IR 2006N</option>
+                                <option value="CANON IR 2206N">CANON IR 2206N</option>
+                                <option value="ECO TANK L15160">ECO TANK L15160</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Grant</label>
+                              <select class="form-control" id="gt-x" name="GrantM">
+                                <option value="None">--Select--</option>
+                                <option value="IT-HW">IT-HW</option>
+                                <option value="DGEME CASH">DGEME CASH</option>
+                                <option value="IT-DGEME">IT-DGEME</option>
+                                <option value="PMSE">PMSE</option>
+                                <option value="MISCELLANEOUS">MISCELLANEOUS</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Year of Purchase</label>
+                              <select class="form-control" id="YOP-x" name="YopM">
+                                <option value="None">--Select--</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Group</label>
+                              <select class="form-control" id="gp-x" name="GroupM">
+                                <option value="None">--Select--</option>
+                                <option value="TL">TL</option>
+                                <option value="FCRC">FCRC</option>
+                                <option value="HQ">HQ</option>
+                                <option value="SCSO">SCSO</option>
+                                <option value="FINANCE">FINANCE</option>
+                                <option value="MCO">MCO</option>
+                                <option value="GMP OFFICE">GMP OFFICE</option>
+                                <option value="CRC">CRC</option>
+                                <option value="PROJECT CELL">PROJECT CELL</option>
+                                <option value="WSG">WSG</option>
+                                <option value="MI ROOM">MI ROOM</option>
+                                <option value="LEGAL CELL">LEGAL CELL</option>
+                                <option value="CO ORD LIB">CO ORD LIB</option>
+                                <option value="COMDTT SECTION">COMDTT SECTION</option>
+                                <option value="NM">NM</option>
+                                <option value="OSS">OSS</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label>Nomenclature</label>
+                              <input type="text" class="form-control" placeholder="Enter Nomenclature" name="NomenclatureM">
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+
+                <div id="device-details"></div>
+                <div class="text-center mt-3 mb-2">
+                  <input type="submit" value="Submit" class="px-5 btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div> 
+</div> 
+
+
+{% endblock %}
+
+
+
+
+
+
+{% block script %}
+<script>
+  function showDropdown(device) {
+      var dropdown = document.getElementById(device + 'Dropdown');
+      if (dropdown) {
+          // Hide all other device dropdowns
+          var allDropdowns = document.getElementsByClassName('device-dropdown');
+          for (var i = 0; i < allDropdowns.length; i++) {
+              if (allDropdowns[i].id !== device + 'Table') {
+                  allDropdowns[i].classList.add('hide');
+              }
+          }
+          dropdown.classList.toggle('show'); 
+      }
+  }
+
+  function showDeviceTable(device) {
+      var deviceTable = document.getElementById(device + 'Table');
+      if (deviceTable) {
+          // Hide all other device tables
+          var allDeviceTables = document.getElementsByClassName('device-table');
+          for (var i = 0; i < allDeviceTables.length; i++) {
+              if (allDeviceTables[i].id !== device + 'Table') {
+                  allDeviceTables[i].classList.add('hide');
+              }
+          }
+          deviceTable.classList.remove('hide'); 
+      }
+  }
+
+  function showDetailsForm() {
+      var selectedDevice = document.getElementById('device-dropdown').value;
+      showDeviceTable(selectedDevice);
+  }
+</script>
+
+
+{% endblock %}

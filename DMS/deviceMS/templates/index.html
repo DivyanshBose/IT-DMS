@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('{% static "images/background.jpeg" %}');
+        background-size: cover;
+      }
+      nav {
+        background-color: black;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav h1, nav h2 {
+        margin: 0;
+      }
+      .logo {
+        height: 50px;
+        margin-right: 20px;
+      }
+      .title-container {
+        display: flex;
+        align-items: center;
+      }
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        margin-right: 400px;
+      }
+      .button-container {
+        display: flex;
+      }
+      button {
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 5px;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px 2px;
+        cursor: pointer;
+      }
+      a.button-admin {
+        margin-top: 10px;
+        width: 50%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        margin-left: 5px;
+      }
+      a.button-user {
+        margin-top: 10px;
+        width: 75%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="title-container">
+        <img src="{% static 'images/logo.jpg' %}" alt="Army Logo" class="logo">
+        <!-- <form method="post" action="" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="file" id="logoInput" accept="image/*">
+          <button type="submit">Upload</button>
+        </form>
+        {% for p in img %}
+          <img src="/media/{{p.pic }}"class="logo">
+        {% endfor %} -->
+        <div class="text-container">
+          <h2>509 Army Base Workshop</h2>
+        </div>
+        <div class="text-container">
+          <h1>IT DEVICE MANAGEMENT SYSTEM</h1>
+        </div>
+      </div>
+      <div class="button-container">
+        <a class="button-admin" href="{% url 'admin_login' %}">Admin</a>
+        <a class="button-user" href="{% url 'emp_login' %}">User</a>
+      </div>
+    </nav>
+
+  </body>
+</html>

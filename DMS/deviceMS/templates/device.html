@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Navbar</title>
+  <style>
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: center; /* Align items horizontally in the center */
+    }
+
+    .navbar a {
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      position: relative; /* Enable relative positioning for the devices */
+    }
+
+    .navbar a:hover {
+      color: pink; /* Change color on hover */
+    }
+
+    .navbar a:active {
+      color: lightblue; /* Change color when clicked */
+    }
+
+    /* CSS styles for the table */
+    .device-table {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .device-table table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    .device-table th,
+    .device-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    .device-table th {
+      background-color: #f2f2f2;
+    }
+
+    .device-table select {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hide {
+      display: none;
+    }
+    .device-btns {
+      margin-top: 20px;
+    }
+
+    .device-btns button {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+
+    /* CSS styles for the dropdowns */
+    .device-dropdown {
+      display: none;
+    }
+
+    .device-dropdown.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="#desktop">Desktop</a>
+    <a href="#printer">Printer</a>
+    <a href="#ups">UPS</a>
+    <a href="#xerox">Xerox Machine</a>
+  </div>
+
+  <!-- Device tables -->
+  <div class="device-table hide" id="desktopTable">
+    <h2>Desktop</h2>
+    <div class="device-btns">
+      <button type="button" onclick="showDropdown('monitor')">Monitor</button>
+      <button type="button" onclick="showDropdown('mouse')">Mouse</button>
+      <button type="button" onclick="showDropdown('keyboard')">Keyboard</button>
+      <button type="button" onclick="showDropdown('cpu')">CPU</button>
+    </div>
+    <div id="monitorDropdown" class="device-dropdown hide">
+     <table>
+      <tr>
+        <th>Monitor_Brand</th>
+        <td><select><option value="Acer">Acer</option><option value="HP">HP</option><option value="Lenovo">Lenovo</option></select></td>
+      </tr>
+      <tr>
+        <th>Monitor_Resolution</th>
+        <td><select><option value="14inch">14inch</option><option value="14.5inch">14.5inch</option><option value="15inch">15inch</option></select></td>
+      </tr>
+      
+    </table>
+    </div>
+    <div id="mouseDropdown" class="device-dropdown hide">
+      <table>
+      
+      <tr>
+        <th>Mouse_brand</th>
+        <td><select><option value="Intel">Intel</option><option value="logitech">logitech</option></td>
+      </tr>
+      <tr>
+        <th>Mouse_Type</th>
+        <td><select><option value="wireless">wireless</option><option value="wired">wired</option></select></td>
+      </tr>
+    </table>
+    </div>
+    <div id="keyboardDropdown" class="device-dropdown hide">
+     <table>
+      
+      <tr>
+        <th>keyboard_brand</th>
+        <td><select><option value="logitech">Logitech</option><option value="razer">razer</option>
+      </tr>
+      <tr>
+        <th>keyboardlang</th>
+        <td><select><option value="eng">english</option><option value="african">African</option></select></td>
+      </tr>
+    </table>
+    </div>
+    <div id="cpuDropdown" class="device-dropdown hide">
+      <table>
+      <tr>
+        <th>CPUbrand</th>
+        <td><select><option value="Celeron">Celeron</option><option value="intel">intel</option>
+      </tr>
+      <tr>
+        <th>Cpucores</th>
+        <td><select><option value="I3 core">I3 core</option><option value="I5 core">I5 core</option></select></td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- Printer table -->
+  <div class="device-table hide" id="printerTable">
+    <h2>Printer</h2>
+    <table>
+      <tr>
+        <th>Print_Technology</th>
+        <td><select><option value="Laser">Laser</option><option value="Inkjet">Inkjet</option><option value="Dot Matrix">Dot Matrix</option></select></td>
+      </tr>
+      <tr>
+        <th>Resolution</th>
+        <td><select><option value="600 DPI">600 DPI</option><option value="1200 DPI">1200 DPI</option><option value="2400 DPI">2400 DPI</option></select></td>
+      </tr>
+      <tr>
+        <th>Color_Support</th>
+        <td><select><option value="Color">Color</option><option value="Black and White">Black and White</option></select></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- UPS table -->
+  <div class="device-table hide" id="upsTable">
+    <h2>UPS</h2>
+    <table>
+      <tr>
+        <th>Capacity</th>
+        <td><select><option value="500VA">500VA</option><option value="1000VA">1000VA</option><option value="1500VA">1500VA</option></select></td>
+      </tr>
+      <tr>
+        <th>Backup_Time</th>
+        <td><select><option value="15 minutes">15 minutes</option><option value="30 minutes">30 minutes</option><option value="1 hour">1 hour</option></select></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Xerox Machine table -->
+  <div class="device-table hide" id="xeroxTable">
+    <h2>Xerox Machine</h2>
+    <table>
+      <tr>
+        <th>Copier_Speed</th>
+        <td><select><option value="20 CPM">20 CPM</option><option value="30 CPM">30 CPM</option><option value="40 CPM">40 CPM</option></select></td>
+      </tr>
+      <tr>
+        <th>Scanner_Resolution</th>
+        <td><select><option value="600 DPI">600 DPI</option><option value="1200 DPI">1200 DPI</option><option value="2400 DPI">2400 DPI</option></select></td>
+      </tr>
+      <tr>
+        <th>Features</th>
+        <td><select><option value="Scan to Email">Scan to Email</option><option value="Duplex Printing">Duplex Printing</option><option value="Wireless Connectivity">Wireless Connectivity</option></select></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Function to show the dropdown for the specified device
+    function showDropdown(device) {
+      var dropdown = document.getElementById(device + 'Dropdown');
+      if (dropdown) {
+        // Hide all other device dropdowns
+        var allDropdowns = document.getElementsByClassName('device-dropdown');
+        for (var i = 0; i < allDropdowns.length; i++) {
+          if (allDropdowns[i].id !== device + 'Dropdown') {
+            allDropdowns[i].classList.add('hide');
+          }
+        }
+        dropdown.classList.toggle('show'); // Show/hide the selected device dropdown
+      }
+    }
+
+    // Event listeners for device links
+    var deviceLinks = document.getElementsByClassName('navbar')[0].getElementsByTagName('a');
+    for (var i = 0; i < deviceLinks.length; i++) {
+      deviceLinks[i].addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        var deviceName = this.getAttribute('href').substring(1); // Get the device name from the href attribute
+
+        // Show/hide appropriate device table based on the selected device
+        var allDeviceTables = document.getElementsByClassName('device-table');
+        for (var j = 0; j < allDeviceTables.length; j++) {
+          if (allDeviceTables[j].id === deviceName + 'Table') {
+            allDeviceTables[j].classList.remove('hide');
+          } else {
+            allDeviceTables[j].classList.add('hide');
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
